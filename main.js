@@ -14,7 +14,7 @@ var correctkeystrokes=0;
 var wrongkeystrokes=0;
 var uncorrectedwords=0;
 var testrunningtime=1;
-
+var netwpm2=0;
 //proverbs array
 var one,two,three,four,five,six,seven,eight,nine,ten;
 one=["a ","picture ","is ","worth ","a ","thousand ","words"];
@@ -37,7 +37,6 @@ function init(){
  const enter=document.querySelector(".entertostart");
 const entertext="Press Enter to start";
 var splittext=entertext.split("");
-enter.textContent="";
 for(let  i= 0; i< splittext.length; i++)
 {
   
@@ -62,7 +61,7 @@ function ontick(){
 
 //event listener for enter key to start the game :)
   document.addEventListener('keyup',function enterfunction(event){
-
+console.log("enter is presseed");
         if (event.keyCode === 13)
          {
         createtextdiv();
@@ -337,7 +336,8 @@ function calculateuncorrectedletters(){
   }
 //calculating and displaying the errors
 function displayresults(){
-let accuracy=correctkeystrokes/finallength;
+let final=correctkeystrokes+wrongkeystrokes;
+let accuracy=correctkeystrokes/final;
 let accuracyfinal=accuracy*100;
 accuracyfinal=Math.round(accuracyfinal);
 if (accuracyfinal>=100){
@@ -352,8 +352,32 @@ netwpm =Math.round(netwpm);
 if(netwpm<0){
   netwpm=0;
 }
+netwpm2=netwpm;
+//dynamicaly displaying the analysis tab
+if(netwpm<50){
+  document.getElementById("modalsadsvg").style.display="block";
+}
 
+if(netwpm>=50 & netwpm<70){
+  document.getElementById("modaljoysvg").style.display="block";
+  
+}
+if(netwpm>=70){
+  document.getElementById("modalhappysvg").style.display="block";
+}
 
+if(netwpm<30){
+  document.getElementById("modalresultsid").innerHTML="Your typing speed is <span class='oogabooga'>too slow</span>";
+}
+if(netwpm<50 & netwpm>=30){
+  document.getElementById("modalresultsid").innerHTML="Your typing speed is  <span class='oogabooga'>Slow</span>";
+}
+if(netwpm<70 & netwpm>=50){
+  document.getElementById("modalresultsid").innerHTML="Your typing speed is <span class='oogabooga'>Good</span>";
+}
+if(netwpm<100 & netwpm>=70){
+  document.getElementById("modalresultsid").innerHTML="Your typing speed is  <span class='oogabooga'>Excellent</span>";
+}
 
 let b=document.getElementById("main-container1");
 b.style.display="flex";
@@ -361,37 +385,17 @@ b.style.display="flex";
 resultanimation();
 //call event listener for analysis button
 analysisbuttonfn();
+
 let j=document.getElementById('netwpm');
 j.innerHTML=netwpm;
-document.getElementById("wpmmodal").textContent=netwpm;
 let k=document.getElementById('accuracy');
 k.innerHTML=accuracyfinal+"%";
-document.getElementById("accuracymodal").textContent=accuracyfinal+"%";
 let l=document.getElementById('correctkeystrokes');
 l.innerHTML=correctkeystrokes;
-document.getElementById("ckmodal").textContent=correctkeystrokes;
 let m=document.getElementById('wrongkeystrokes');
 m.innerHTML=wrongkeystrokes;
-document.getElementById("wkmodal").textContent=wrongkeystrokes;
 let p=document.getElementById("uncorrectedletters");
 p.innerHTML=uncorrectedwords;
-document.getElementById("wcmodal").textContent=uncorrectedwords;
-
-if (netwpm<=40){
-  document.getElementById("wpmremarks").textContent="Your typing speed is below average";
-}
-if(netwpm<=55 && netwpm>40){
-  document.getElementById("wpmremarks").textContent="Your typing speed is average";
-}
-if(netwpm<=75 && netwpm>55){
-  document.getElementById("wpmremarks").textContent="Your typing speed is above average";
-}
-if(netwpm<=85 && netwpm>75){
-  document.getElementById("wpmremarks").textContent="Your typing speed is at PRO level ! nice work !!";
-}
-if(netwpm>90){
-  document.getElementById("wpmremarks").textContent="This is a short test you can or cannot keep this typing speed for longer duration but still you're  a monster";
-}
 
 }
 
@@ -417,13 +421,62 @@ function analysisbuttonfn(){
   v.addEventListener("click",analysisclickfn);
 }
 function analysisclickfn(){
+  gsap.fromTo(".modal",{y:"-200%",duration:1},{y:"0%"});
   let v=document.getElementById("analysismodal");
   v.style.display="flex";
-  let x=document.getElementById("closemodal");
-  x.addEventListener("click",closemodal);
+
+  createanimationforresult();
+  if(netwpm2>=50 & netwpm2<70){
+  const tp=gsap.timeline({defaults:{ease:'power1.out'}});
+  tp.from("#girlholding",{x:"-100%",duration:0.5});
+  tp.from("#emoji-board",{y:"300%",duration:0.5});
+  tp.from("#smile-emoji",{y:"300%",duration:0.5},"-=0.5");
+}
+if(netwpm2>=70){
+  const tr=gsap.timeline({defaults:{ease:'power1.in'}});
+  tr.from("#bg",{scale:0,duration:0.5});
+  tr.from("#fl",{y:"200%",duration:0.5},"-=0.5");
+  tr.from("#fr",{y:"200%",duration:0.5},"-=0.5");
+  tr.from("#m",{y:"200%",duration:0.5},"-=0.5");
+}
+if(netwpm2<50){
+const tx=gsap.timeline({defaults:{ease:'power1.out'}});
+tx.from("#floor",{scale:0,duration:0.5});
+tx.from("#sad-emoji",{x:"-200%",duration:0.5},"-=0.5");
+tx.from("#female-sad-right",{x:"200%",duration:0.5},"-=0.5");
+}
+let x=document.getElementById("closemodal");
+x.addEventListener("click",closemodal);
 }
 function closemodal(){
-  let v=document.getElementById("analysismodal");
-  v.style.display="none";
-
+  
+  gsap.fromTo(".modal",{y:"0%",duration:1},{y:"200%"});
+  setTimeout(()=>{
+    let v=document.getElementById("analysismodal");
+    v.style.display="none"},320);
 }
+
+function createanimationforresult(){
+  let x=document.getElementsByClassName("oogabooga")[0];
+  let text=x.textContent;
+  let finaltext=text.split("");
+  x.textContent="";
+  for(let i=0;i<finaltext.length;i++){
+    x.innerHTML+="<span class='ooga2'>" +finaltext[i]+"</span>"
+  }
+var char2 =0;
+let timer = setInterval(ontick2,50);
+function ontick2(){
+  let span2 = document.querySelectorAll('.ooga2')[char2];
+   span2.classList.add('oogastyle');
+   char2++
+   if(char2===finaltext.length){
+     clearInterval(timer);
+     timer=null;
+     return;
+   }
+ 
+}
+}
+
+
