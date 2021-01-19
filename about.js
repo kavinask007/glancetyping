@@ -1,6 +1,4 @@
-window.onbeforeunload = function () {
-    window.scrollTo(0,0);
-};
+var i =0;
 gsap.registerPlugin(ScrollTrigger);
 const tl = gsap.timeline({defaults:{ease:'back.out',onComplete:bodyvisible}});
 tl.to('h1',{y:'0%',duration:0.5,stagger:0.25,ease:"power2.out"});
@@ -12,11 +10,11 @@ tl.fromTo(".welcome",{y:"100%",display:"none"},{y:"0%",duration:0.5,display:"fle
 tl.fromTo(".wrapper",{y:"45%",display:"none"},{y:"0%",duration:0.5,display:"flex"});
 tl.fromTo(".why",{y:"45%",display:"none"},{y:"0%",duration:0.5,display:"flex"},"-=0.5");
 tl.fromTo(".imgdiv",{y:"45%"},{y:"0%",duration:0.5},"-=0.5");
-var i =0;
+
 function bodyvisible(){
     i=i+1; 
-    if(i==21){
-        setInterval(bodyvisible2,1000);
+    if(i==21){  
+        setInterval(bodyvisible2,900);
     }
     
 }
@@ -118,4 +116,12 @@ function changecolor(progress,direction){
     
      }
 
+}
+window.onbeforeunload = function () {
+    window.scrollTo(0,0);
+};
+let r=document.getElementById("backtotop");
+r.addEventListener("click",backtotop);
+function backtotop(){
+    window.scrollTo(0,0);
 }
