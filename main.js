@@ -450,7 +450,7 @@ x.addEventListener("click",closemodal);
 }
 function closemodal(){
   
-  gsap.fromTo(".modal",{y:"0%",duration:1},{y:"200%"});
+  gsap.fromTo(".modal",{y:"0%",duration:1},{y:"-200%"});
   setTimeout(()=>{
     let v=document.getElementById("analysismodal");
     v.style.display="none"},320);

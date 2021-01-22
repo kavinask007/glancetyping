@@ -183,9 +183,7 @@ main{
     display:flex;
     justify-content: center;
     align-items: center;
-  
     background: #f7f6f6;
- 
 }
 
 .main3{
@@ -212,13 +210,16 @@ justify-content: center;
     top:0;
     left:0;
     width:0%;
-    height:0.3rem;
+    height:2px;
     background-color: #665DF5;
     transition:all 0.5s ease;
 }
 .anim{
 width:100%;
 height:100%;
+display:flex;
+justify-content: center;
+align-items:center
    
     
 }
@@ -254,6 +255,7 @@ footer{
     display:flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .wpm{
 height:80%;
@@ -307,16 +309,6 @@ flex-wrap: wrap;
        text-decoration: none;
        color:rgba(0, 0, 255, 0.753)
    }
-
-
-
-
-
-
-
-
-
-
    @media only screen and (max-width:600px){
     .maintext{
         font-size: 32px;

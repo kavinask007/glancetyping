@@ -120,14 +120,6 @@ justify-content: space-between;
   75%  {opacity:5%}
   100% {opacity:100%}
 }
-
-@keyframes example2{
-  0%   {opacity:100%}
-  25%  {opacity:75%}
-  50%  {opacity:100%}
-  75%  {opacity:75%}
-  100% {opacity:100%}
-}
 @keyframes shake {
   0% { transform: translate(1px, 1px)  }
   10% { transform: translate(-1px, -2px) }
@@ -148,7 +140,7 @@ justify-content: space-between;
   height:3px;
   margin-left:5px;
   padding:0;
-  background-color: rgb(100, 214, 235);
+  background-color: #665DF5;
   border-radius: 1px;
   visibility:hidden;
   border-radius: 3px;
@@ -203,21 +195,9 @@ span.fade{
     color:white;
     font-size: 1.3rem;
     border:none;
-  animation-name:example2;
-  animation-duration:7s;
-  animation-timing-function: ease-in-out;
- animation-iteration-count: infinite;
  cursor:pointer;
- transition: all 0.4s ease 0s;
 }
-button:hover {
-  background: #434343;
-  letter-spacing: 0.06rem;
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
-  transition: all 0.4s ease 0s;
-  }
+
 .resultsbutton{
   text-decoration: none;
   position: absolute;
@@ -229,12 +209,7 @@ button:hover {
   font-size: 1.3rem;
   color:rgb(255, 255, 255);
   border:none;
-  animation-name:example2;
-  animation-duration:7s;
-  animation-timing-function: ease-in-out;
- animation-iteration-count: infinite;
  cursor:pointer;
- transition: all 0.4s ease 0s;
 }
 
 .results{
@@ -348,7 +323,7 @@ a:hover{
   align-items: center;
   justify-content:space-evenly;
   flex-direction: column;
-  box-shadow: 5px 5px 5px #cdc3f3;
+  box-shadow: 3px 3px 10px #0a0a0a;
 }
 .modalclosebutton{
   position: absolute;
