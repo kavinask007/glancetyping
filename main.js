@@ -30,9 +30,7 @@ ten=['the ','past ','does ','not ','equal ','the ','future'];
 var proverbs=[one,two,three,four,five,six,seven,eight,nine,ten];
 
 const time = document.querySelector('#timeid');
-
 function init(){
-  
 // PRESS enter to start animation
  const enter=document.querySelector(".entertostart");
 const entertext="Press Enter to start";
@@ -353,6 +351,7 @@ if(netwpm<0){
   netwpm=0;
 }
 netwpm2=netwpm;
+
 //dynamicaly displaying the analysis tab
 if(netwpm<50){
   document.getElementById("modalsadsvg").style.display="block";
@@ -383,6 +382,14 @@ let b=document.getElementById("main-container1");
 b.style.display="flex";
 //call result animation
 resultanimation();
+var highscore=localStorage.getItem("wpm");
+if(netwpm>highscore){
+localStorage.setItem("wpm",netwpm);
+document.getElementById("highwpm").style.display="block";
+const t5 = gsap.timeline({defaults:{ease:'power1.out'}});
+  t5.from(".highwpm",{y:400,duration:1});
+  t5.fromTo(".highwpm",{y:0},{y:400,duration:1},"+=1");
+}
 //call event listener for analysis button
 analysisbuttonfn();
 
@@ -477,6 +484,9 @@ function ontick2(){
    }
  
 }
+}
+function rowdy(){
+  alert("Your Highest WPM is "+localStorage.getItem("wpm"));
 }
 
 

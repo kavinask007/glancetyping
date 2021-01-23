@@ -21,13 +21,19 @@
 <body>
 
     <header class="header">
-      <div>
+     
+      <a onclick="rowdy()"class="links"> <div class="nav-content"> Highscore
+    </div></a>
+    <div >
         <a href="index.html" class="links"><h1 class="headertext"> Glance Typing</h1></a>
-      </div>  
+      </div> 
       <a href="about.html" class="links"> <div class="nav-content"> About
       </div></a>
+      
     </header>
     <div class="main-container"id="main-container1">
+   
+       
     <div class="analysismodal" id="analysismodal">
         <div class="modal">
             <div class="modalclosebutton" id="closemodal">&times;</div>
@@ -302,8 +308,6 @@
         
         </div>
     </div>
-
-
     <div class="svgdiv">
      <div class="wrapper">
      <svg  viewBox="0 0 1168 780" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -426,7 +430,9 @@
     </div>
   
 </div>
-  
+<div class="highwpm" id="highwpm"><img class="highwpmsvg"src="highwpm.png" alt="loading">
+    </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>   
 <script src="main.js" ></script>
